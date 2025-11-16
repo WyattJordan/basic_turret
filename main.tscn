@@ -1,0 +1,235 @@
+[gd_scene load_steps=19 format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="Script" uid="uid://erov27sd8i2d" path="res://camera.gd" id="1_ig7tw"]
+[ext_resource type="Script" path="res://csg_cylinder_3d.gd" id="3_1bvp3"]
+[ext_resource type="Theme" uid="uid://bb6c80rkqqkcx" path="res://new_theme.tres" id="3_h2yge"]
+[ext_resource type="Script" path="res://elevation_sliders.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://8qrdquqstoe3" path="res://head.gd" id="5_7mycd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
+next_pass = SubResource("ORMMaterial3D_lquwl")
+albedo_color = Color(0.29803923, 0.62352943, 0.50980395, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+material = SubResource("StandardMaterial3D_7mycd")
+
+[sub_resource type="Skin" id="Skin_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+albedo_color = Color(0.2691193, 0.5307425, 0.22556198, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qu6v"]
+bg_color = Color(0.20392157, 0.27450982, 0.6745098, 1)
+
+[sub_resource type="Theme" id="Theme_1bvp3"]
+VBoxContainer/styles/style_box_for_theme = SubResource("StyleBoxFlat_2qu6v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_color = Color(0.7510219, 0.162265, 0.28712654, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_color = Color(0.7529412, 0.16078432, 0.28627452, 1)
+
+[sub_resource type="GDScript" id="GDScript_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+cull_mode = 1
+albedo_color = Color(0, 0.61745584, 0.97741455, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.999999, 0, 0, 0, -0.5354478, 26.112463, 0, -0.92948097, -0.00016826391, 0, 10, -3)
+mesh = SubResource("BoxMesh_ig7tw")
+skeleton = NodePath("../Camera3D")
+
+[node name="ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(167.17088, 0, 0, 0, 0.1, 0, 0, 0, 153.59193, 0, 0, 0)
+mesh = SubResource("BoxMesh_7dm0k")
+skin = SubResource("Skin_lquwl")
+surface_material_override/0 = SubResource("StandardMaterial3D_272bh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, -0.5000001, 0.8660254, 0, 0.8660254, 0.5000001, -1, 2.18557e-08, -3.7855173e-08, 7, 6.000001, 6)
+script = ExtResource("1_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.87000996, 0.24999988, 0.42495033, 0.482963, 0.25881904, 0.83651626, 0.09914376, 0.9330128, -0.34591585, -6, 93, 40)
+light_indirect_energy = 9.677
+light_angular_distance = 73.0
+
+[node name="UI_canvas" type="CanvasLayer" parent="."]
+
+[node name="VBox_control_panel" type="VBoxContainer" parent="UI_canvas"]
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.8
+anchor_right = 0.66
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_h2yge")
+
+[node name="Title" type="Label" parent="UI_canvas/VBox_control_panel"]
+layout_mode = 2
+theme = SubResource("Theme_1bvp3")
+text = "Controls Commander!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="UI_canvas/VBox_control_panel"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme = ExtResource("3_h2yge")
+
+[node name="Angle Labels" type="HBoxContainer" parent="UI_canvas/VBox_control_panel"]
+layout_mode = 2
+
+[node name="0 Deg" type="Label" parent="UI_canvas/VBox_control_panel/Angle Labels"]
+layout_mode = 2
+text = "0 °"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Direction" type="Label" parent="UI_canvas/VBox_control_panel/Angle Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Direction"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="360 Deg" type="Label" parent="UI_canvas/VBox_control_panel/Angle Labels"]
+layout_mode = 2
+text = "360 °"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Angle Slider" type="HSlider" parent="UI_canvas/VBox_control_panel"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 360.0
+step = 0.1
+value = 180.0
+scrollable = false
+tick_count = 36
+
+[node name="Elevation Labels" type="HBoxContainer" parent="UI_canvas/VBox_control_panel"]
+layout_mode = 2
+
+[node name="0 Deg" type="Label" parent="UI_canvas/VBox_control_panel/Elevation Labels"]
+layout_mode = 2
+text = "-20 °"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Elevation" type="Label" parent="UI_canvas/VBox_control_panel/Elevation Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Elevation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="90 Deg" type="Label" parent="UI_canvas/VBox_control_panel/Elevation Labels"]
+layout_mode = 2
+text = "90 °"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Elevation Sliders" type="HSlider" parent="UI_canvas/VBox_control_panel"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -20.0
+max_value = 90.0
+step = 0.1
+value = 45.0
+scrollable = false
+tick_count = 36
+script = ExtResource("3_lquwl")
+
+[node name="Panel2" type="Panel" parent="UI_canvas/VBox_control_panel"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Power Labels" type="HBoxContainer" parent="UI_canvas/VBox_control_panel"]
+layout_mode = 2
+
+[node name="0" type="Label" parent="UI_canvas/VBox_control_panel/Power Labels"]
+layout_mode = 2
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Power" type="Label" parent="UI_canvas/VBox_control_panel/Power Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Power"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="100" type="Label" parent="UI_canvas/VBox_control_panel/Power Labels"]
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Power Slider" type="HSlider" parent="UI_canvas/VBox_control_panel"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 360.0
+step = 0.1
+scrollable = false
+tick_count = 10
+
+[node name="FIRE" type="Button" parent="UI_canvas/VBox_control_panel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FIRE"
+
+[node name="CenterContainer" type="CenterContainer" parent="UI_canvas"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 1.0
+anchor_right = 0.66
+anchor_bottom = 1.0
+offset_left = -127.5
+offset_top = -274.0
+offset_right = 127.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="base" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+sides = 64
+material = SubResource("StandardMaterial3D_5vw27")
+script = ExtResource("3_1bvp3")
+
+[node name="head" type="CSGSphere3D" parent="base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+radius = 0.4
+radial_segments = 50
+rings = 50
+material = SubResource("StandardMaterial3D_kek77")
+script = ExtResource("5_7mycd")
+
+[node name="turret" type="CSGCylinder3D" parent="base/head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0)
+radius = 0.12
+height = 0.8
+sides = 64
+material = SubResource("StandardMaterial3D_4c57u")
+script = SubResource("GDScript_lquwl")
+
+[node name="wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, -0.050704956, 0.24589539, -0.37792015)
+mesh = SubResource("BoxMesh_ig7tw")
+skeleton = NodePath("../Camera3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_lquwl")

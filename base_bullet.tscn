@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bri2x3bgin2qm"]
+
+[ext_resource type="Script" uid="uid://cijltuf3pwwtp" path="res://base_bullet.gd" id="1_h1bej"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xc138"]
+radius = 0.11
+
+[node name="BaseBullet" type="Node3D"]
+script = ExtResource("1_h1bej")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_xc138")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D"]
+radius = 0.11
+radial_segments = 50
+rings = 30

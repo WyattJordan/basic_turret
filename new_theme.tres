@@ -1,0 +1,37 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bb6c80rkqqkcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78ylj"]
+bg_color = Color(0.46088278, 0.5634718, 0.9934613, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amlv4"]
+bg_color = Color(0.58056056, 0.55285597, 3.85046e-07, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.58180624, 0.15883318, 0.2033214, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7eh4"]
+bg_color = Color(4.5242905e-06, 0.663912, 0.8245987, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2q5q"]
+bg_color = Color(0.99242574, 0.00033903302, 0.8895874, 1)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 10
+
+[resource]
+resource_local_to_scene = true
+default_font_size = 24
+Button/styles/normal = SubResource("StyleBoxFlat_78ylj")
+HSlider/styles/slider = SubResource("StyleBoxFlat_amlv4")
+Panel/styles/panel = SubResource("StyleBoxFlat_i7eh4")
+VBoxContainer/styles/style_box_theme_vbox = SubResource("StyleBoxFlat_j2q5q")
