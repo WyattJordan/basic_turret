@@ -7,7 +7,7 @@ var plBullet := preload("res://base_bullet.tscn")
 @onready var power_slider = %"Power Slider"
 @onready var fire_button = %FIRE
 
-var max_power = 0.1 # m/s
+var max_power = 0.01 # m/s
 
 func _ready() -> void:
 	_on_angle_changed(angle_slider.value)
@@ -29,7 +29,7 @@ func _on_fire_button() -> void:
 	var start_position = turret.global_position + dir_vec * turret.height / 2
 	print("direction is:")
 	print(dir_vec)
+	get_tree().current_scene.add_child(bullet)
 	bullet.set_vel(dir_vec * power_slider.value)
 	bullet.position = start_position
 	
-	get_tree().current_scene.add_child(bullet)
